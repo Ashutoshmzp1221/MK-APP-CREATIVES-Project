@@ -1,8 +1,7 @@
-const UploadRepository = require('../repositories/uploadRepository');
+const uploadRepository = require('../repositories/upload-repository');
 
 class JobQueue {
   constructor() {
-    this.uploadRepository = new UploadRepository;
     this.queue = [];
     setInterval(() => this.processNext(), 1000);
   }
@@ -33,4 +32,4 @@ class JobQueue {
   }
 }
 
-module.exports = JobQueue;
+module.exports = new JobQueue();
