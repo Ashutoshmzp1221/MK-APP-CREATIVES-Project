@@ -11,29 +11,9 @@ A simple, scalable Node.js file upload system using:
 
 ---
 
-## 📂 Project Structure
+## 📂 Project File Structure
 
-project-root/
-│
-├── src/
-│ ├── app.js # Main entry point
-│ ├── config/
-│ │ └── db.js # Database config and Sequelize instance
-│ ├── models/
-│ │ └── upload.js # Upload model definition
-│ ├── routes/
-│ │ ├── upload.js # Upload API routes
-│ │ └── files.js # File listing & download routes
-│ ├── controllers/
-│ │ └── uploadController.js
-│ ├── workers/
-│ │ └── processor.js # Worker logic for background processing
-│ └── utils/
-│ └── storage.js # Storage directory handling
-│
-├── uploads/ # Uploaded files will be stored here
-├── .env # Environment variables
-└── package.json # Project dependenc
+<img width="591" alt="Screenshot 2025-06-14 at 4 16 18 PM" src="https://github.com/user-attachments/assets/1732a01b-887d-4236-889b-add5b51699d9" />
 
 
 
@@ -61,7 +41,6 @@ project-root/
 
 1️⃣ **Clone the repository**
 
-```bash
 git clone <your-repo-url>
 cd Mk-App-Creatives-Project
 
@@ -81,9 +60,21 @@ Upload File
 
 Get Upload Status
     GET /files/:id
-
+ 
 List All Files
     GET /files
 
 Download Completed File
     GET /files/:id/download
+
+
+Some postman screenShots
+<img width="999" alt="Screenshot 2025-06-14 at 4 11 23 PM" src="https://github.com/user-attachments/assets/21c0544b-9803-460a-ab87-b60f8489fc9f" />
+
+<img width="928" alt="Screenshot 2025-06-14 at 4 12 08 PM" src="https://github.com/user-attachments/assets/73e52411-c0e5-4225-bd0e-a57473c5b93f" />
+
+<img width="897" alt="Screenshot 2025-06-14 at 4 12 35 PM" src="https://github.com/user-attachments/assets/c32e37ba-240d-40b3-85c9-6c40ec5d4bcd" />
+
+<img width="900" alt="Screenshot 2025-06-14 at 4 14 03 PM" src="https://github.com/user-attachments/assets/f58f1111-516a-4717-92f8-f20c3c52330c" />
+
+
