@@ -1,5 +1,5 @@
 const UploadRepository = require('../repositories/upload-repository');
-const JobQueue = require('../config/jobQueue');
+const JobQueue = require('../utils/jobQueue');
 class UploadService {
     constructor() {
         this.uploadRepository = new UploadRepository();

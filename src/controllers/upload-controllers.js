@@ -1,7 +1,7 @@
 const UploadService = require('../services/upload-service');
 const uploadService = new UploadService();
-
-const path = require('path');
+const downloadFileUtil = require('../utils/fileDownloader');
+// const path = require('path');
 
 const uploadFile = async (req, res) => {
     try {
@@ -70,26 +70,25 @@ const listUploads = async (req, res) => {
 
 const downloadFile = async (req, res) => {
     try {
-        const upload = await uploadService.getStatus(req.params.id);
-        if (!upload || upload.status !== 'completed') {
-            return res.status(404).json({
-                message: 'File not ready for download',
-                data: {},
-                success: false,
-                err: {}
-            });
-        }
-        return res.download(upload.stored_path);
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({
-            message: 'Failed to download file',
-            data: {},
-            success: false,
-            err: error
+      const upload = await uploadService.getStatus(req.params.id);
+      if (!upload || upload.status !== 'completed') {
+        return res.status(404).json({
+          message: 'File not ready for download',
+          data: {},
+          success: false,
+          err: {}
         });
+      }
+      return downloadFileUtil(upload.stored_path, res);
+    } catch (error) {
+      return res.status(500).json({
+        message: 'Failed to process download request',
+        data: {},
+        success: false,
+        err: error
+      });
     }
-};
+  };
 
 module.exports = {
     createUpload,
