@@ -1,11 +1,14 @@
-const uploadRepository = require('../repositories/upload-repository');
+const UploadRepository = require('../repositories/upload-repository');
 const jobQueue = require('../workers/processor');
 
 class UploadService {
+  constructor() {
+    this.uploadRepository = new UploadRepository();
+  }
   async handleUpload(file, metadataJson) {
     try {
         const metadata = JSON.parse(metadataJson);
-        const upload = await uploadRepository.create({
+        const upload = await this.uploadRepository.create({
           filename: file.originalname,
           metadata,
           status: 'processing',
@@ -23,7 +26,7 @@ class UploadService {
 
   async getStatus(id) {
     try {
-        const status = await uploadRepository.findById(id);
+        const status = await this.uploadRepository.findById(id);
         return status;
     } catch (error) {
         console.log('Something went wrong in service layer');
@@ -33,7 +36,7 @@ class UploadService {
 
   async listFiles() {
     try {
-        const list = await uploadRepository.findAll();
+        const list = await this.uploadRepository.findAll();
         return list;
     } catch (error) {
         console.log('Something went wrong in service layer');

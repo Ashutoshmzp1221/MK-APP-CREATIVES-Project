@@ -14,7 +14,7 @@ class UploadRepository {
   async findById(id) {
     try {
         const find = await Upload.findByPk(id);
-        return find
+        return find;
     } catch (error) {
         console.log('Something went wrong in repository layer');
         throw { error };
@@ -41,4 +41,4 @@ class UploadRepository {
   }
 }
 
-module.exports = new UploadRepository();
+module.exports = UploadRepository;

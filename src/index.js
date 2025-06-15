@@ -3,7 +3,7 @@ const express = require('express');
 const { sequelize } = require('./config/db');
 const uploadRoutes = require('./routes/upload');
 const fileRoutes = require('./routes/files');
-require('./workers/processor');  
+// require('./workers/processor');  
 const { PORT } = require('./config/serverConfig')
 
 const setUpAndStartServer = () => {

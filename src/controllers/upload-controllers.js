@@ -5,14 +5,14 @@ const uploadFile = async (req, res) => {
   try {
     const upload = await uploadService.handleUpload(req.file, req.body.metadata);
     res.status(201).json({ 
-        upload_id: upload.id, 
+        data: upload, 
         status: 'processing',
         success: true,
         error : {}
     });
   } catch (err) {
     res.status(400).json({ 
-        upload_id : {},
+        data : {},
         status : 'failed',
         success: false,
         error: err.message 
@@ -51,7 +51,26 @@ const getStatus = async (req, res) => {
   };
   
 
-  const listFiles = async (req, res) => {
+const file = async(req, res) => {
+  try {
+    const response = await uploadService.getStatus(req.params.id);
+    return res.status(200).json({
+      data: response,
+      success: true,
+      error: {},
+      message: 'File is fetched successfully'
+    });
+  } catch (error) {
+    return res.status(500).json({
+      data: {},
+      success: false,
+      error: err.message,
+      message: 'Failed to fetch files'
+    });
+  }
+}
+
+const listFiles = async (req, res) => {
     try {
       const files = await uploadService.listFiles();
   
@@ -111,5 +130,6 @@ module.exports = {
     uploadFile,
     listFiles,
     downloadFile,
-    getStatus
+    getStatus,
+    file
 }
